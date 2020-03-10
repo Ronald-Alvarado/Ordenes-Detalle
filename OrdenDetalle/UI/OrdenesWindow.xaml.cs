@@ -20,10 +20,12 @@ namespace OrdenDetalle.UI
     public partial class OrdenesWindow : Window
     {
         Ordenes orden = new Ordenes();
+        
         public OrdenesWindow()
         {
             InitializeComponent();
             this.DataContext = orden;
+
             OrdenId_Text.Text = "0";
             ClienteId_Text.Text = "0";
             ProductoId_Text.Text = "0";
@@ -52,7 +54,8 @@ namespace OrdenDetalle.UI
             Monto_Text.Text = "0";
             MontoTotal_Text.Text = "0";
 
-            OrdenDetalleDataGrid.ItemsSource = new List<OrdenDetalles>();
+            orden.OrdenDetalles = new List<OrdenDetalles>();
+            orden = new Ordenes();
             Actualizar();
         }
 
@@ -163,10 +166,11 @@ namespace OrdenDetalle.UI
             if (!string.IsNullOrWhiteSpace(ClienteId_Text.Text))
             {
                 int id;
-                Clientes cliente = new Clientes();
                 int.TryParse(ClienteId_Text.Text, out id);
 
+                Clientes cliente = new Clientes();
                 cliente = ClientesBLL.Buscar(id);
+
                 if (cliente != null)
                 {
                     LlenaCampoCliente(cliente);
@@ -189,10 +193,11 @@ namespace OrdenDetalle.UI
             if (!string.IsNullOrWhiteSpace(ProductoId_Text.Text))
             {
                 int id;
-                Productos producto = new Productos();
                 int.TryParse(ProductoId_Text.Text, out id);
 
+                Productos producto = new Productos();
                 producto = ProductosBLL.Buscar(id);
+
                 if (producto != null)
                 {
                     LlenaCampoProducto(producto);

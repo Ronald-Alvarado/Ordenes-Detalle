@@ -33,6 +33,7 @@ namespace OrdenDetalle.UI
             Nombre_Text.Text = string.Empty;
             Cedula_Text.Text = string.Empty;
             Telefono_Text.Text = string.Empty;
+            cliente = new Clientes();
             Actualizar();
         }
 
@@ -68,7 +69,10 @@ namespace OrdenDetalle.UI
                 }
             }
             if (paso)
+            {
                 Limpiar();
+
+            }
 
         }
 
@@ -80,6 +84,7 @@ namespace OrdenDetalle.UI
             {
                 cliente = clienteAnterior;
                 Actualizar();
+                MessageBox.Show("Encontrado");
             }
             else
             {

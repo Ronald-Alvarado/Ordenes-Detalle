@@ -42,11 +42,13 @@ namespace OrdenDetalle.BLL
             try
             {
                 db.Database.ExecuteSqlRaw($"Delete FROM OrdenDetalles Where OrdenId={ordenes.OrdenId}");
+                
                 foreach (var item in ordenes.OrdenDetalles)
                 {
                     db.Entry(item).State = EntityState.Added;
                 }
                 db.Entry(ordenes).State = EntityState.Modified;
+                
                 paso = (db.SaveChanges() > 0);
             }
             catch (Exception)

@@ -12,11 +12,30 @@
         <Label Content="Cedula" HorizontalAlignment="Left" Margin="50,150,0,0" VerticalAlignment="Top"/>
         <Label Content="Telefono" HorizontalAlignment="Left" Margin="50,200,0,0" VerticalAlignment="Top"/>
 
-        <TextBox x:Name="ClienteId_Text" HorizontalAlignment="Left" Margin="150,50,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Height="26"/>
-        <TextBox x:Name="Nombre_Text" HorizontalAlignment="Left" Margin="150,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="26"/>
-        <TextBox x:Name="Cedula_Text" HorizontalAlignment="Left" Margin="150,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="26"/>
-        <TextBox x:Name="Telefono_Text" HorizontalAlignment="Left" Margin="150,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="26"/>
-        
+        <TextBox x:Name="ClienteId_Text" HorizontalAlignment="Left" Margin="150,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Height="26">
+            <TextBox.Text>
+                <Binding Path="ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox x:Name="Nombre_Text" HorizontalAlignment="Left" Margin="150,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="26">
+            <TextBox.Text>
+                <Binding Path="Nombre" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox x:Name="Cedula_Text" HorizontalAlignment="Left" Margin="150,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="26">
+            <TextBox.Text>
+                <Binding Path="Cedula" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox x:Name="Telefono_Text" HorizontalAlignment="Left" Margin="150,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="26">
+            <TextBox.Text>
+                <Binding Path="Telefono" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+            </TextBox.Text>
+        </TextBox>
+
         <Button x:Name="BuscarButton" Content="Buscar" HorizontalAlignment="Left" Margin="230,50,0,0" VerticalAlignment="Top" Height="26" Width="70" Click="BuscarButton_Click"/>
         <Button x:Name="NuevoButton" Content="Nuevo" HorizontalAlignment="Left" Margin="50,280,0,0" VerticalAlignment="Top" Height="26" Width="70" Click="NuevoButton_Click"/>
         <Button x:Name="GuardarButton" Content="Guardar" HorizontalAlignment="Left" Margin="150,280,0,0" VerticalAlignment="Top" Height="26" Width="70" Click="GuardarButton_Click"/>

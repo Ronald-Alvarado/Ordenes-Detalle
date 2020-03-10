@@ -29,14 +29,20 @@
         <TextBox x:Name="Monto_Text" HorizontalAlignment="Left" Margin="150,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"  Height="26"/>
         <TextBox x:Name="MontoTotal_Text" HorizontalAlignment="Left" Margin="150,500,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"  Height="26"/>
 
-        <DataGrid x:Name="OrdenDetalleDataGrid" Margin="400,0,0,0"/>
-        
+        <DataGrid x:Name="OrdenDetalleDataGrid" Margin="400,0,0,0">
+            <DataGrid.ItemsSource>
+                <Binding Path="OrdenDetalles" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+            </DataGrid.ItemsSource>
+        </DataGrid>
+
         <Button x:Name="BuscarButton" Content="Buscar" HorizontalAlignment="Left" Margin="230,50,0,0" VerticalAlignment="Top" Height="26" Width="70" Click="BuscarButton_Click"/>
 
         <Button x:Name="NuevoButton" Content="Nuevo" HorizontalAlignment="Left" Margin="50,540,0,0" VerticalAlignment="Top" Height="26" Width="70" Click="NuevoButton_Click"/>
         <Button x:Name="GuardarButton" Content="Guardar" HorizontalAlignment="Left" Margin="150,540,0,0" VerticalAlignment="Top" Height="26" Width="70" Click="GuardarButton_Click"/>
         <Button x:Name="EliminarButton" Content="Eliminar" HorizontalAlignment="Left" Margin="250,540,0,0" VerticalAlignment="Top" Height="26" Width="70" Click="EliminarButton_Click"/>
-        
+
+        <Button x:Name="AgregarButton" Content="Agregar" HorizontalAlignment="Left" Margin="339,250,0,0" VerticalAlignment="Top" Height="26" Click="AgregarButton_Click"/>
+
 
     </Grid>
 </Window>

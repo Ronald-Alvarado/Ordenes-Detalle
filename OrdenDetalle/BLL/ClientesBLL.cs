@@ -62,9 +62,7 @@ namespace OrdenDetalle.BLL
 
             try
             {
-                cliente = db.Clientes.Include(x => x.Orden)
-                     .Where(x => x.ClienteId == id)
-                     .SingleOrDefault();
+                cliente = db.Clientes.Include(x => x.Orden).Where(x => x.ClienteId == id).SingleOrDefault();
             }
             catch (Exception)
             {
