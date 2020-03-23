@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrdenDetalle.UI"
+        xmlns:error="clr-namespace:OrdenDetalle.Validaciones"
         mc:Ignorable="d"
         Title="ClientesWindow" Height="450" Width="800">
     <Grid>
@@ -14,7 +15,11 @@
 
         <TextBox x:Name="ClienteId_Text" HorizontalAlignment="Left" Margin="150,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Height="26">
             <TextBox.Text>
-                <Binding Path="ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+                <Binding Path="ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <error:IdValidation x:Name="ClienteIdValidation" ValidatesOnTargetUpdated="true"/>
+                    </Binding.ValidationRules>
+                </Binding>
             </TextBox.Text>
         </TextBox>
 

@@ -8,11 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="UI\Buscar.png" />
+    <None Remove="UI\Eliminar.png" />
+    <None Remove="UI\Guardar.png" />
+    <None Remove="UI\Nuevo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UI\Buscar.png" />
+    <Resource Include="UI\Eliminar.png" />
+    <Resource Include="UI\Guardar.png" />
+    <Resource Include="UI\Nuevo.png" />
   </ItemGroup>
 
 </Project>

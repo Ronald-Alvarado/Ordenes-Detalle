@@ -22,5 +22,22 @@ namespace OrdenDetalle.Entidades
             NombreProducto = String.Empty;
             Precio = 0;
         }
+
+        public Productos(int productoId, string nombreProducto, decimal precio, List<OrdenDetalles> ordenDetalle)
+        {
+            ProductoId = productoId;
+            NombreProducto = nombreProducto ?? throw new ArgumentNullException(nameof(nombreProducto));
+            Precio = precio;
+            OrdenDetalle = ordenDetalle ?? throw new ArgumentNullException(nameof(ordenDetalle));
+        }
+
+
+
+        /*    public Productos(int ProductoId, string NombreProducto, decimal Precio)
+            {
+                this.ProductoId = ProductoId;
+                this.NombreProducto = NombreProducto;
+                this.Precio = Precio;
+            }*/
     }
 }

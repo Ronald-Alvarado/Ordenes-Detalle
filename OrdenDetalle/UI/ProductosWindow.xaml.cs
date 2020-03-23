@@ -32,7 +32,36 @@ namespace OrdenDetalle.UI
             ProductoId_Text.Text = "0";
             NombreProducto_Text.Text = string.Empty;
             Precio_Text.Text = "0";
+            producto = new Productos();
             Actualizar();
+        }
+
+        private bool Validar()
+        {
+            bool paso = true;
+
+            if(ProductoId_Text.Text == string.Empty)
+            {
+                MessageBox.Show("Id vacio");
+                ProductoId_Text.Focus();
+                paso = false;
+            }
+
+            if(NombreProducto_Text.Text == string.Empty)
+            {
+                MessageBox.Show("Nombre Vacio");
+                NombreProducto_Text.Focus();
+                paso = false;
+            }
+
+            if(Precio_Text.Text == "0" || Precio_Text.Text == string.Empty)
+            {
+                MessageBox.Show("El precio no puede ser 0 o esta Vacio");
+                Precio_Text.Focus();
+                paso = false;
+            }
+
+            return paso;
         }
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
@@ -49,6 +78,11 @@ namespace OrdenDetalle.UI
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
             bool paso = false;
+
+            if (!Validar())
+            {
+                return;
+            }
 
             if (Convert.ToInt32(ProductoId_Text.Text) == 0)
             {
@@ -69,7 +103,10 @@ namespace OrdenDetalle.UI
             }
 
             if (paso)
+            {
                 Limpiar();
+                MessageBox.Show("Guardado");
+            }
 
         }
 

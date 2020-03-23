@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OrdenDetalle.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,7 +59,7 @@ namespace OrdenDetalle.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrdenDetalle",
+                name: "OrdenDetalles",
                 columns: table => new
                 {
                     OrdenDetalleId = table.Column<int>(nullable: false)
@@ -73,29 +73,44 @@ namespace OrdenDetalle.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrdenDetalle", x => x.OrdenDetalleId);
+                    table.PrimaryKey("PK_OrdenDetalles", x => x.OrdenDetalleId);
                     table.ForeignKey(
-                        name: "FK_OrdenDetalle_Ordenes_OrdenId",
+                        name: "FK_OrdenDetalles_Ordenes_OrdenId",
                         column: x => x.OrdenId,
                         principalTable: "Ordenes",
                         principalColumn: "OrdenId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrdenDetalle_Productos_ProductoId",
+                        name: "FK_OrdenDetalles_Productos_ProductoId",
                         column: x => x.ProductoId,
                         principalTable: "Productos",
                         principalColumn: "ProductoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Productos",
+                columns: new[] { "ProductoId", "NombreProducto", "Precio" },
+                values: new object[] { 1, "Pepino", 5000m });
+
+            migrationBuilder.InsertData(
+                table: "Productos",
+                columns: new[] { "ProductoId", "NombreProducto", "Precio" },
+                values: new object[] { 2, "Azucar", 500m });
+
+            migrationBuilder.InsertData(
+                table: "Productos",
+                columns: new[] { "ProductoId", "NombreProducto", "Precio" },
+                values: new object[] { 3, "Sal", 50m });
+
             migrationBuilder.CreateIndex(
-                name: "IX_OrdenDetalle_OrdenId",
-                table: "OrdenDetalle",
+                name: "IX_OrdenDetalles_OrdenId",
+                table: "OrdenDetalles",
                 column: "OrdenId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdenDetalle_ProductoId",
-                table: "OrdenDetalle",
+                name: "IX_OrdenDetalles_ProductoId",
+                table: "OrdenDetalles",
                 column: "ProductoId");
 
             migrationBuilder.CreateIndex(
@@ -107,7 +122,7 @@ namespace OrdenDetalle.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "OrdenDetalle");
+                name: "OrdenDetalles");
 
             migrationBuilder.DropTable(
                 name: "Ordenes");

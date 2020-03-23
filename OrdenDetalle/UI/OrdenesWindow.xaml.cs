@@ -32,7 +32,6 @@ namespace OrdenDetalle.UI
             Cantidad_Text.Text = "0";
             Precio_Text.Text = "0";
             Monto_Text.Text = "0";
-            MontoTotal_Text.Text = "0";
         }
 
         private void Actualizar()
@@ -54,14 +53,57 @@ namespace OrdenDetalle.UI
             Monto_Text.Text = "0";
             MontoTotal_Text.Text = "0";
 
-            orden.OrdenDetalles = new List<OrdenDetalles>();
+            orden.OrdenDetalle = new List<Entidades.OrdenDetalles>();
             orden = new Ordenes();
             Actualizar();
         }
 
+        private  bool Validar()
+        {
+            bool paso = true;
+
+            if (OrdenId_Text.Text == string.Empty)
+            {
+                MessageBox.Show("OrdenId Vacio");
+                OrdenId_Text.Focus();
+                paso = false;
+            }
+            else if (ClienteId_Text.Text == string.Empty)
+            {
+                MessageBox.Show("ClienteId Vacio");
+                ClienteId_Text.Focus();
+                paso = false;
+            }
+            else if (NombreCliente_Text.Text == string.Empty)
+            {
+                MessageBox.Show("Nombre del Cliente Vacio");
+                paso = false;
+            }
+            else if (Fecha_Text.Text == string.Empty)
+            {
+                MessageBox.Show("Fecha Vacia");
+                Fecha_Text.Focus();
+                paso = false;
+            }
+            else if (MontoTotal_Text.Text == "0")
+            {
+                MessageBox.Show("Debe Agregar un producto");
+                ProductoId_Text.Focus();
+                paso = false;
+            }
+            else if (OrdenDetalleDataGrid.DataContext == null)
+            {
+                MessageBox.Show("Debe Agregar una orden");
+                AgregarButton.Focus();
+                paso = false;
+            }
+
+            return paso;
+        }
+
         private void AgregarButton_Click(object sender, RoutedEventArgs e)
         {
-            orden.OrdenDetalles.Add(new OrdenDetalles(Convert.ToInt32(OrdenId_Text.Text), Convert.ToInt32(ProductoId_Text.Text),
+            orden.OrdenDetalle.Add(new OrdenDetalles(Convert.ToInt32(OrdenId_Text.Text), Convert.ToInt32(ProductoId_Text.Text),
                 Descripcion_Text.Text, Convert.ToDecimal(Cantidad_Text.Text), Convert.ToDecimal(Precio_Text.Text),
                 Convert.ToDecimal(Monto_Text.Text)));
 
@@ -101,6 +143,11 @@ namespace OrdenDetalle.UI
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
             bool paso = false;
+
+            if (!Validar())
+            {
+                return;
+            }
 
             if (OrdenId_Text.Text == "0")
                 paso = OrdenesBLL.Guardar(orden);
@@ -228,5 +275,63 @@ namespace OrdenDetalle.UI
             Limpiar();
         }
 
+        private void ClienteId_Text_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            int Id;
+            int.TryParse(ClienteId_Text.Text, out Id);
+
+            Clientes c = new Clientes();
+            c = ClientesBLL.Buscar(Id);
+
+            if(c != null)
+            {
+                NombreCliente_Text.Text = c.Nombre;
+            }
+        }
+
+        private void ProductoId_Text_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            int Id;
+            int.TryParse(ProductoId_Text.Text, out Id);
+
+            Productos p = new Productos();
+            p = ProductosBLL.Buscar(Id);
+
+            if(p != null)
+            {
+                Descripcion_Text.Text = p.NombreProducto;
+                Precio_Text.Text = Convert.ToString(p.Precio);
+            }
+        }
+
+        private void Precio_Text_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal num1;
+            decimal.TryParse(Precio_Text.Text, out num1);
+            decimal num2;
+
+            string cantidad = Cantidad_Text.Text;
+            if(cantidad != string.Empty)
+            {
+                num2 = Convert.ToDecimal(cantidad);
+                Monto_Text.Text = Convert.ToString(num1 * num2);
+            }
+
+        }
+
+        private void Cantidad_Text_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            decimal num2;
+            decimal.TryParse(Cantidad_Text.Text, out num2);
+            decimal num1;
+
+            string precio = Precio_Text.Text;
+            if(precio != string.Empty)
+            {
+                num1 = Convert.ToDecimal(precio);
+                Monto_Text.Text = Convert.ToString(num1 * num2);
+            }
+
+        }
     }
 }

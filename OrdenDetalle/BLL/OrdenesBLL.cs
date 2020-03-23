@@ -30,7 +30,6 @@ namespace OrdenDetalle.BLL
             {
                 db.Dispose();
             }
-
             return paso;
         }
 
@@ -43,7 +42,7 @@ namespace OrdenDetalle.BLL
             {
                 db.Database.ExecuteSqlRaw($"Delete FROM OrdenDetalles Where OrdenId={ordenes.OrdenId}");
                 
-                foreach (var item in ordenes.OrdenDetalles)
+                foreach (var item in ordenes.OrdenDetalle)
                 {
                     db.Entry(item).State = EntityState.Added;
                 }
@@ -70,7 +69,7 @@ namespace OrdenDetalle.BLL
 
             try
             {
-                ordenes = db.Ordenes.Include(x => x.OrdenDetalles)
+                ordenes = db.Ordenes.Include(x => x.OrdenDetalle)
                     .Where(x => x.OrdenId == id)
                     .SingleOrDefault();
             }

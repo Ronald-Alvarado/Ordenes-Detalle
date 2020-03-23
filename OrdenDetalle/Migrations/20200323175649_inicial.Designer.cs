@@ -9,8 +9,8 @@ using OrdenDetalle.DAL;
 namespace OrdenDetalle.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200308193547_Inicial")]
-    partial class Inicial
+    [Migration("20200323175649_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace OrdenDetalle.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("OrdenDetalle.Entidades.OrdenDetalle", b =>
+            modelBuilder.Entity("OrdenDetalle.Entidades.OrdenDetalles", b =>
                 {
                     b.Property<int>("OrdenDetalleId")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace OrdenDetalle.Migrations
 
                     b.HasIndex("ProductoId");
 
-                    b.ToTable("OrdenDetalle");
+                    b.ToTable("OrdenDetalles");
                 });
 
             modelBuilder.Entity("OrdenDetalle.Entidades.Ordenes", b =>
@@ -111,9 +111,29 @@ namespace OrdenDetalle.Migrations
                     b.HasKey("ProductoId");
 
                     b.ToTable("Productos");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductoId = 1,
+                            NombreProducto = "Pepino",
+                            Precio = 5000m
+                        },
+                        new
+                        {
+                            ProductoId = 2,
+                            NombreProducto = "Azucar",
+                            Precio = 500m
+                        },
+                        new
+                        {
+                            ProductoId = 3,
+                            NombreProducto = "Sal",
+                            Precio = 50m
+                        });
                 });
 
-            modelBuilder.Entity("OrdenDetalle.Entidades.OrdenDetalle", b =>
+            modelBuilder.Entity("OrdenDetalle.Entidades.OrdenDetalles", b =>
                 {
                     b.HasOne("OrdenDetalle.Entidades.Ordenes", null)
                         .WithMany("OrdenDetalle")
